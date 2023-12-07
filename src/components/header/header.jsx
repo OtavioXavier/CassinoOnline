@@ -28,7 +28,7 @@ export default function HeaderHome({ toggleSidebar }) {
       setLogged(true);
       setPaneCoins(newCoins);
     }
-  }, []);
+  }, [isLogged]);
 
   return (
     <div>

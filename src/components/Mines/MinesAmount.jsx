@@ -22,7 +22,7 @@ export default function MinesAmount({ Mines }) {
     <div className="flex flex-col gap-2">
       <label className="text-slate-400 text-sm mb-2" htmlFor="betAmount">Mine Amount</label>
       <div className="flex pl-4 items-center bg-slate-800 p-2 h-10 w-96 gap-2 rounded">
-        <Image src="./MineIcon.svg" width={24} height={24} />
+        <Image src="./MineIcon.svg" width={24} height={24} alt=""/>
         <input
           type="number"
           className="bg-transparent w-80"
