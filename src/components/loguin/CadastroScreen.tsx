@@ -91,9 +91,19 @@ export default function Cadastro({ register, loguin }) {
   }
 
   function isEmailExist(email: string) {
-   const users = JSON.parse(localStorage.getItem('users')) || [];
-   let user = users.find((u)=> u.access == email);
-   return !user;
+      const users = JSON.parse(localStorage.getItem('users'));
+      if(!users) {
+          return true;
+      } else {
+        let user = users.find((u)=> u.access == email);
+        if(user) {
+          return false;
+        } else {
+          return true;
+        }
+      }
+     
+
   }
   
   return (

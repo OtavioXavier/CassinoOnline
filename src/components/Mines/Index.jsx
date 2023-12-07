@@ -17,10 +17,44 @@ export default function Index() {
     const refMineField = useRef();
  
     function sendData() {
+        if(!checkLogin()) {
+           alert("Faça login para jogar aqui.");
+           return;
+        }
+
         if(checkInputs()) {
             refMineField.current.choiceBombs();
+            pay();
             setActive(true);
         }
+    }
+
+    function checkLogin() {
+        let login = JSON.parse(localStorage.getItem('isLogin'));
+        if(login) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function pay() {
+        let login = JSON.parse(localStorage.getItem('isLogin'));
+        let user = login[0];
+        let newCoin = Number(user.coins) - Number(bet);
+        user.coins = newCoin;
+        login = [user];
+        localStorage.setItem("isLogin", JSON.stringify(login));
+        
+    }
+
+    function receive() {
+        let login = JSON.parse(localStorage.getItem('isLogin'));
+        let user = login[0];
+        let newCoin = Number(user.coins) + Number(bet);
+        user.coins = newCoin;
+        login = [user];
+        localStorage.setItem("isLogin", JSON.stringify(login));
     }
 
     function takeBet(betAmount) {
@@ -46,14 +80,21 @@ export default function Index() {
     }
 
     function withdraw() {
-      console.log('valor em jogo: ', bet)
-      setFinish(true);
+        receive();
+        setFinish(true);
     }
 
     function checkInputs() {
+
         if(bet <=0 ) {
           alert("Insira o montante de dinheiro!")
           return false;
+        }
+
+        let login = JSON.parse(localStorage.getItem('isLogin'));
+        if(bet > login[0].coins) {
+            alert("você precisa depositar mais dinheiro para apostar tudo isso")
+         return false;
         }
         
         if(mines <= 0 ) {
@@ -69,7 +110,7 @@ export default function Index() {
            {finish &&(<ModalWin hits={hits} bet={bet}/>)}
            {loose && (<ModalLoose hits={hits}/>)}
            
-           <div className='flex flex-col md:flex-row justify-center items-center gap-40'>
+           <div className='flex flex-col lg:flex-row justify-center items-center gap-40'>
             <div className='flex flex-col items-center gap-8'>
                 <BetAmount Bet={takeBet}/>
                 <MinesAmount Mines={takeMines}/>

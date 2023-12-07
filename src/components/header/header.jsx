@@ -1,76 +1,80 @@
-'use client'
+"use client";
 
-import Logo from "../commons/Logo";
 import LinkPag from "./LinkPag";
-import React, {useState, useEffect} from 'react';
-import LoguinScreen from '../loguin/LoguinScreen.tsx';
-import CadastroScreen from '../loguin/CadastroScreen.tsx';
-import UserHeader from './UserHeader';
-import Image from "next/image";
+import React, { useState, useEffect } from "react";
+import LoginScreen from "../loguin/LoginScreen";
+import CadastroScreen from "../loguin/CadastroScreen.tsx";
+import UserHeader from "./UserHeader";
+import Sidebar from "./Sidebar/Sidebar";
+import Link from "next/link";
 
-
-
-export default function HeaderHome() {
-
+export default function HeaderHome({ toggleSidebar }) {
   const [isLoguin, setIsLoguin] = useState(false);
   const [isRegister, setIsRegister] = useState(false);
   const [isLogged, setLogged] = useState(false);
   const [paneCoins, setPaneCoins] = useState(0);
+  const [sidebar, setSidebar] = useState(false);
 
+  const takeRegister = (register) => setIsRegister(register);
+  const takeLoguin = (login) => setIsLoguin(login);
 
-  function takeRegister(register) {
-    let newRegister = register
-    setIsRegister(newRegister);
-  }
-  
-  function takeLoguin(login) {
-    let newLogin = login;
-    setIsLoguin(newLogin);
-  }
-  
-  useEffect(()=> {
-     let login = localStorage.getItem('isLogin');
-     if(login || isLogged) {
-      login = JSON.parse(localStorage.getItem('isLogin'));
-      const user = login.find((u)=> u.access);
-      let newCoins = user ? user.coins : 0;
+  const showSidebar = () => setSidebar(!sidebar);
+
+  useEffect(() => {
+    const login = JSON.parse(localStorage.getItem("isLogin"));
+    if (login || isLogged) {
+      const user = login.find((u) => u.access);
+      const newCoins = user ? user.coins : 0;
       setLogged(true);
       setPaneCoins(newCoins);
     }
   }, []);
-  
-  
+
   return (
     <div>
-      <header className="flex justify-between py-4 px-16 border-solid items-center border-b border-gray-600">
+      <header className="flex justify-between px-8 h-24 bg-slate-900 border-b border-gray-600 fixed w-full">
         <div className="flex items-center">
-        <button><Image src={"/buttonSideBar.svg"} width={40} height={40} alt="bottom"/></button>
-        <div className="hidden md:block">
-        <Logo />
+          <button
+            type="button"
+            className="bg-[url('/ButtonSidebar.svg')] w-10 h-10 bg-yellow-600"
+            onClick={() => {
+              toggleSidebar();
+              showSidebar();
+            }}
+          ></button>
+          <Link
+            href="/"
+            className="bg-[url('/Logo.png')] bg-contain w-80 h-20 bg-no-repeat hidden md:block"
+          ></Link>
         </div>
+
+        <div className=" gap-16 items-center hidden lg:flex">
+          <LinkPag text="Cassino" direction="/" />
+          <LinkPag text="Esportes" direction="/Esportes" />
         </div>
-        <div className=" block">
-        
-        </div>
-        <div className=" gap-16 items-center hidden md:flex">
-          <LinkPag text="Cassino" direction="/"/>
-          <LinkPag text="Esportes" direction="/Esportes"/>
-        </div>
-        {isLogged && (<UserHeader userCoins={paneCoins}/>)}
-        {!isLogged && ( 
-       <div className="flex gap-14 items-center">
-       <button type="button" onClick={()=> {setIsLoguin(true)}}>Entrar</button>
-       <button onClick={() => {setIsRegister(true)}} className="transition-all bg-green-600 rounded-md font-bold p-2 hover:scale-110 " >Cadastre-se</button>
-        </div>)}
+        {isLogged ? (
+          <UserHeader userCoins={paneCoins} />
+        ) : (
+          <div className="flex gap-14 items-center">
+            <button
+              type="button"
+              onClick={() => setIsLoguin(true)}
+            >
+              Entrar
+            </button>
+            <button
+              onClick={() => setIsRegister(true)}
+              className="transition-all bg-green-600 rounded-md font-bold p-2 hover:scale-110 "
+            >
+              Cadastre-se
+            </button>
+          </div>
+        )}
       </header>
-      {isLoguin && (
-      <LoguinScreen loguin={takeLoguin} register={takeRegister}/>
-      )}
-      <div>
-      {isRegister && (
-      <CadastroScreen register={takeRegister} loguin={takeLoguin}/>
-      )}
-      </div>
+      <Sidebar isOpen={sidebar} />
+
+      {isLoguin && <LoginScreen loguin={takeLoguin} register={takeRegister} />}
+      {isRegister && <CadastroScreen register={takeRegister} loguin={takeLoguin} />}
     </div>
   );
 }

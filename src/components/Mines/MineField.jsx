@@ -71,6 +71,7 @@ const MineField = React.forwardRef((props, ref) => {
       <Mine idBomb={24} bombs={bombs} active={active} bgColor={active ? 'bg-stone-200' : 'bg-stone-400/80'} hits={takeHits} isLoose={takeLoose}/>
     </div>
   );
+  
 });
 
 export default MineField;

@@ -3,13 +3,13 @@ import BoxJackpots from "./BoxJackpots";
 export default function IndexBoxJackpots() {
     return ( 
         <div>
-        <div className="flex flex-col items-center grid-cols-4 m-8 gap-4 mt-16 md:grid">
+        <div className="flex flex-col items-center md:grid-cols-3 m-8 gap-6 mt-16 md:grid">
         <BoxJackpots title="Dazzle Me" src="/DazzleMe.png"/>
         <BoxJackpots title="Neon Staxx"src="/NeonStaxx.png"/>
         <BoxJackpots title="Blood Suckers" src="/BloodSuckers.png"/>
-        <BoxJackpots title="Secret of the Stones" src="/SecretOfTheStones.png"/>
+        <BoxJackpots title="Secret Stones" src="/SecretOfTheStones.png"/>
         <BoxJackpots title="Blood Suckers" src="/DazzleMe.png"/>
-        <BoxJackpots title="Secret of the Stones" src="/SecretOfTheStones.png"/>
+        <BoxJackpots title="Secret Stones" src="/SecretOfTheStones.png"/>
         <BoxJackpots title="Dazzle Me" src="/DazzleMe.png"/>
         <BoxJackpots title="Neon Staxx" src="/NeonStaxx.png"/>
         </div>
