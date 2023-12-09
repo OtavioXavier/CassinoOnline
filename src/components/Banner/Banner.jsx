@@ -20,9 +20,9 @@ export default function Banner() {
         <Image src={"/banner02.png"} width={1920} height={1080} alt="banner" />
       </div>
       <div className="md:hidden flex flex-col gap-2 ml-6">
-        <h1 className="text-2xl md:text-6xl font-bold">Online slots</h1>
+        <h1 className="text-2xl md:text-6xl font-bold">Slots Online</h1>
         <p className="text-xl md:text-2xl">
-          Apply for G Club Free Slots 15 times.
+        Utilize 15 Slots Grátis
         </p>
 
         {!logged && (
@@ -33,7 +33,7 @@ export default function Banner() {
             }}
             className=" bg-green-600 p-4 w-36 h-14 rounded-md text-center"
           >
-            Play Now
+            Jogar agora
           </button>
         )}
         {logged && (
@@ -41,7 +41,7 @@ export default function Banner() {
             className=" bg-green-600 p-4 w-36 h-14 rounded-md text-center"
             href="/Mines"
           >
-            Play Now
+            Jogar agora
           </Link>
         )}
         
@@ -49,9 +49,9 @@ export default function Banner() {
       <div className="md:bg-[url('/banner02.png')] overflow-x-hidden md:bg-no-repeat md:bg-contain md:mb-0 mb-8 md:pb-72 md:pt-80">
         <div className="ml-8 hidden md:block">
           <div className="mb-8">
-            <h1 className="text-2xl md:text-6xl font-bold">Online slots</h1>
+            <h1 className="text-2xl md:text-6xl font-bold">Slots Online</h1>
             <p className="text-xl md:text-2xl">
-              Apply for G Club Free Slots 15 times.
+            Utilize 15 Slots Grátis
             </p>
           </div>
           {!logged && (
@@ -62,7 +62,7 @@ export default function Banner() {
               }}
               className=" bg-green-600 p-4 w-36 h-14 rounded-md"
             >
-              Play Now
+              Jogar agora
             </button>
           )}
           {logged && (
@@ -70,7 +70,7 @@ export default function Banner() {
               className=" bg-green-600 p-4 w-36 h-14 rounded-md"
               href="/Mines"
             >
-              Play Now
+              Jogar agora
             </Link>
           )}
         </div>

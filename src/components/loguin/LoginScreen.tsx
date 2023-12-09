@@ -83,7 +83,7 @@ export default function Loguin({ loguin, register,  }) {
                 </button>
               <div className="flex flex-col justify-center items-center">
                 <Logo />
-                <h1 className="text-2xl mt-4 font-light">Fazer loguin</h1>
+                <h1 className="text-2xl mt-4 font-light">Fazer login</h1>
               </div>
 
               <form>
