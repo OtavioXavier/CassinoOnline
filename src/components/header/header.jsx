@@ -36,7 +36,7 @@ export default function HeaderHome({ toggleSidebar }) {
         <div className="flex items-center">
           <button
             type="button"
-            className="bg-[url('/ButtonSidebar.svg')] w-10 h-10 bg-yellow-600"
+            className="bg-[url('/ButtonHeader.png')] w-10 h-10 bg-yellow-600 hover:rotate-90 transition-all"
             onClick={() => {
               toggleSidebar();
               showSidebar();

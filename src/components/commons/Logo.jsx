@@ -1,11 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Logo() {
  
     return (
-          <Link
-            href="/"
-            className="bg-[url('/Logo.png')] bg-contain w-80 h-20 bg-no-repeat"
-          ></Link>
+          <Link href="/">
+            <Image src={"/Logo.png"} width={320} height={80} alt="Logo"/>
+          </Link>
     )
 }
